@@ -1,7 +1,8 @@
 import { Poppins } from "next/font/google";
-import "./globals.css";
-import ReactQueryProvider from "@/_providers/ReactQueryProvider";
 
+
+import { VisitorNavbar } from "@/components/_frontpage/Navbar";
+import { VisitorFooter } from "@/components/_frontpage/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,15 +16,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
-        <ReactQueryProvider>
-         
+   
+      <main className={`${poppins.variable} antialiased`}>
+        
+          <VisitorNavbar/>
+          <div className="mt-16">
             {children}
-           
-        </ReactQueryProvider>
-      
-      </body>
-    </html>
+          </div>
+          <VisitorFooter/>
+
+      </main>
+   
   );
 }
