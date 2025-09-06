@@ -58,12 +58,31 @@ const registerCompany = async (data) => {
 const mutation = useMutation({
   mutationFn: registerCompany,
   onSuccess: (data) => {
-    toast.success(data.message);
-    form.reset();
-     setUser(data.user);
-    queryClient.invalidateQueries(["user"]);
-    router.push(`/${data.slug}/dashboard`); 
-  },
+  toast.success(data.message);
+
+  // Defensive: make sure slug exists
+  if (!data?.slug) {
+    toast.error("Something went wrong: missing company slug");
+    return;
+  }
+
+  // Reset form
+  form.reset();
+
+  // Set user state safely
+  if (data.user) {
+    setUser(data.user);
+  }
+
+  // Invalidate queries
+  queryClient.invalidateQueries(["user"]);
+
+  // Delay redirect slightly to avoid race condition
+  setTimeout(() => {
+    router.push(`/${data.slug}/dashboard`);
+  }, 300);
+},
+
   onError: (error) => {
   const message = error?.response?.data?.message || "Registration failed";
   toast.error(message);
