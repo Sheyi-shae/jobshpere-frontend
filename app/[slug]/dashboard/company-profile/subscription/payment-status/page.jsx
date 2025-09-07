@@ -4,12 +4,15 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
+import useAuthStore from "@/stores/useAuthStore";
 
 export default function SubscriptionStatusPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const status = searchParams.get("status");
   const queryClient = useQueryClient();
+   const user=useAuthStore((state)=> (state.user))
+   const slug=user?.company?.slug
 
   useEffect(() => {
     // If opened in popup, notify parent and close
@@ -25,9 +28,9 @@ export default function SubscriptionStatusPage() {
     // Auto redirect after 3 seconds
     if (status === "success" || status === "cancel") {
       const timer = setTimeout(() => {
-        router.push("/dashboard");
+        router.replace(`/${slug}/dashboard`);
         queryClient.invalidateQueries(["companyProfile", slug]);
-      }, 10000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [status, router]);

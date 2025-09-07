@@ -66,6 +66,7 @@ const mutation = useMutation({
     return;
   }
 
+
   // Reset form
   form.reset();
 
@@ -73,6 +74,7 @@ const mutation = useMutation({
   if (data.user) {
     setUser(data.user);
   }
+ 
 
   // Invalidate queries
   queryClient.invalidateQueries(["user"]);

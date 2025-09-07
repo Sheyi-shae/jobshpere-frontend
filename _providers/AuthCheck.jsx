@@ -18,7 +18,7 @@ export default function AuthCheck({ children, fallback = "/join" }) {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/user`,
         { withCredentials: true }
-      ); console.log("logged in user", res.data)
+      ); 
       return res.data;
      
     },

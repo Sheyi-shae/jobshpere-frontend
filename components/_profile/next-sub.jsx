@@ -2,22 +2,29 @@
 import { formatDate } from "@/libs/formatDate"
 import { useEffect, useState } from "react"
 
-
 export default function NextBillingDate({ subscription }) {
   const [isBlinking, setIsBlinking] = useState(false)
 
-  if (!subscription?.subscriptionEndDate) return null
+  // Always declare hooks first, then handle conditional logic
+  let endDate = null
+  let diffInDays = null
 
-  const endDate = new Date(subscription.subscriptionEndDate)
-  const today = new Date()
-  const diffInMs = endDate.getTime() - today.getTime()
-  const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24))
+  if (subscription?.subscriptionEndDate) {
+    endDate = new Date(subscription.subscriptionEndDate)
+    const today = new Date()
+    const diffInMs = endDate.getTime() - today.getTime()
+    diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24))
+  }
 
   useEffect(() => {
-    if (diffInDays <= 3) {
+    if (diffInDays !== null && diffInDays <= 3) {
       setIsBlinking(true)
     }
   }, [diffInDays])
+
+  if (!endDate) {
+    return <p className="text-sm text-gray-500">No billing date</p>
+  }
 
   const baseClasses = "text-sm"
   let textClasses = "text-green-600"

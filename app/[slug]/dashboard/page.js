@@ -15,22 +15,24 @@ export default function HomeComponent() {
 
   //fetch company details by slug
 
-  const {
-      data,
-      isLoading,
-      isError,
-      error,
-    } = useQuery({
-      queryKey: ['company'],
-      queryFn: async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/company/${slug}`,
-          { withCredentials: true }
-        );
-        return res.data.data;
-      },
-     
-    });
+
+   const {
+    data,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['company', slug],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/company/${slug}`,
+        { withCredentials: true }
+      );
+      return res.data.data;
+    },
+    enabled: !!user && !!slug, // only run if user and slug exist
+    retry: false,              
+  });
 
   
    

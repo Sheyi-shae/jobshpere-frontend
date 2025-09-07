@@ -242,7 +242,7 @@ export default function Homepage() {
           
                 {/* Case 2: No jobs at all in the db */}
                 {!searchTerm && filteredJobs?.length === 0 && (
-                  <EmptyState title="" />
+                  <EmptyState title=""  mode={'homepage'}/>
                 )}
           
                 {/* Case 3: Show jobs grid */}

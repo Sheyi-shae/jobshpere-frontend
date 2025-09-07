@@ -37,8 +37,8 @@ const navigationItems = [
     description: "Discover amazing companies",
     icon: Building2,
     items: [
-      { title: "Browse Companies", href: "/companies", description: "Explore company profiles" },
-      { title: "Top Employers", href: "/companies/top", description: "Industry-leading companies" },
+      { title: "Browse Companies", href: "#", description: "Explore company profiles" },
+      { title: "Top Employers", href: "#", description: "Industry-leading companies" },
       
     ],
   },

@@ -36,6 +36,7 @@ import logout from '@/libs/logout'
 
 export function AppSidebar({...props}) {
     const user=useAuthStore((state)=> (state.user))
+   
 
     const userLogout =useAuthStore((state)=>(state.logout))
     const pathName=usePathname()
@@ -50,12 +51,7 @@ const handleLogout=async()=>{
 }
 const companySlug=user?.company?.slug
 const data = {
-  user: {
-    name: "Sarah Johnson",
-    email: "sarah@techcorp.com",
-    avatar: "/placeholder.svg?height=32&width=32",
-    company: "TechCorp Inc.",
-  },
+ 
   navMain: [
     {
       title: "Overview",
@@ -140,7 +136,7 @@ const data = {
         </div>
           <div className="flex flex-col">
             <span className="font-semibold text-sidebar-foreground">JobSphere</span>
-            <span className="text-xs capitalize text-sidebar-foreground/70">{user?.company.name}</span>
+            <span className="text-xs capitalize text-sidebar-foreground/70">{user?.company?.name}</span>
           </div>
         </div>
       </SidebarHeader>
@@ -186,7 +182,7 @@ const data = {
                   <Avatar className="h-8 w-8 rounded-lg">
                     <AvatarImage src={user?.company.logo} alt={user?.company.name} />
                     <AvatarFallback className="rounded-lg bg-amber-500 text-slate-900">
-                      {data.user.name
+                      {user?.company?.name
                         .split(" ")
                         .map((n) => n[0])
                         .join("")}

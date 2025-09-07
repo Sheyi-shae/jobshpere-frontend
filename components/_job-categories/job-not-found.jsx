@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Search, Plus, RefreshCw, ArrowLeftToLine } from "lucide-react"
 import { useRouter } from "next/navigation";
 
-export default function EmptyState({ title }) {
+export default function EmptyState({ title,mode }) {
     const router = useRouter();
   return (
     <div className="min-h-screen bg-background p-8">
@@ -37,14 +37,14 @@ export default function EmptyState({ title }) {
 
               {/* Action buttons with hover animations */}
               <div className="flex flex-col sm:flex-row gap-3 mt-8 animate-in fade-in-0 slide-in-from-bottom-4 duration-700 delay-700">
-                <Button
+              {mode !=='homepage' && <Button
                 onClick={() => router.back()}
                   variant="default"
                   className="flex-1 group transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <ArrowLeftToLine className="h-4 w-4 mr-2 transition-transform group-hover:rotate-90 duration-200" />
                   Go Back
-                </Button>
+                </Button>}
                 <Button
                 onClick={() => router.refresh()}
                   variant="outline"
