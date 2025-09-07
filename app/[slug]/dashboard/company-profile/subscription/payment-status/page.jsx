@@ -29,7 +29,7 @@ export default function SubscriptionStatusPage() {
     if (status === "success" || status === "cancel") {
       const timer = setTimeout(() => {
         router.replace(`/${slug}/dashboard`);
-        queryClient.invalidateQueries(["companyProfile", slug]);
+        queryClient.invalidateQueries(["company_profile", slug]);
       }, 3000);
       return () => clearTimeout(timer);
     }
