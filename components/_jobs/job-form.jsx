@@ -37,7 +37,7 @@ import { useRouter } from "next/navigation"
 
 const JOB_TYPES = [
   { value: "remote", label: "Remote", icon: Clock },
-  { value: "hrybrid", label: "Hybrid", icon: Clock },
+  { value: "hybrid", label: "Hybrid", icon: Clock },
   { value: "onsite", label: "Onsite", icon: FileText },
   { value: "contract", label: "Contract", icon: Users },
   { value: "internship", label: "Internship", icon: Users },
