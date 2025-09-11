@@ -15,7 +15,7 @@ import {
 } from "lucide-react"
 import useAuthStore from "@/stores/useAuthStore"
 import axios from "axios"
-import { useMutation, useQuery, } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient, } from "@tanstack/react-query"
 
 import { toast } from "sonner"
 import JobApplicationFilter from "../_applications/application-filter"
@@ -60,6 +60,7 @@ export default function ShortlistedApplications() {
   const [selectedApplication, setSelectedApplication] = useState(null)//for single application
 const [isUpdating, setIsUpdating] = useState(false)
       const user=useAuthStore((state) => state.user)
+       const queryClient= useQueryClient();
   
   const mutation =useMutation()
 

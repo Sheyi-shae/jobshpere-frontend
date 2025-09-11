@@ -60,6 +60,7 @@ export default function ScreenedOutApplications() {
   const [sortBy, setSortBy] = useState("newest")
   const [selectedApplication, setSelectedApplication] = useState(null)
   const [isUpdating, setIsUpdating] = useState(false)
+   const queryClient= useQueryClient();
 
       const user=useAuthStore((state) => state.user)
 
