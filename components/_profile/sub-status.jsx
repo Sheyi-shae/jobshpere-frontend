@@ -47,9 +47,7 @@ export function SubscriptionStatus({ subscription=[],isSubscribing,  onManage, o
   const totalFreeTierJobs= 10
   const totalFreeTierApplications= 50
 
-  const jobPostingsPercentage = (jobPostsIncurrentMonth.length / totalFreeTierJobs) * 100
-  const applicationsPercentage = (applicationsInCurrentMonth.length / totalFreeTierApplications) * 100
-
+ 
   return (
     <div className="space-y-6">
       {/* Current Subscription */}
